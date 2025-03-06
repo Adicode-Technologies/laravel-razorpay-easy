@@ -1,5 +1,3 @@
-
-STARTREADME
 # Laravel Razorpay Easy
 
 A simple and highly customizable Razorpay integration package for Laravel applications.
@@ -163,4 +161,3 @@ The package dispatches the following events:
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE) for more information.
-ENDREADME
