@@ -1,0 +1,35 @@
+{
+    "name": "yourname/laravel-razorpay-easy",
+    "description": "A simple and customizable Razorpay integration for Laravel applications",
+    "keywords": ["laravel", "razorpay", "payment", "gateway"],
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Your Name",
+            "email": "your.email@example.com"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "illuminate/support": "^10.0|^11.0",
+        "razorpay/razorpay": "^2.8"
+    },
+    "autoload": {
+        "psr-4": {
+            "YourName\\LaravelRazorpayEasy\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "YourName\\LaravelRazorpayEasy\\RazorpayServiceProvider"
+            ],
+            "aliases": {
+                "Razorpay": "YourName\\LaravelRazorpayEasy\\Facades\\Razorpay"
+            }
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
