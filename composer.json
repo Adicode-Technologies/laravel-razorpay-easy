@@ -1,13 +1,18 @@
 {
-    "name": "yourname/laravel-razorpay-easy",
+    "name": "adicode-technologies/laravel-razorpay-easy",
     "description": "A simple and customizable Razorpay integration for Laravel applications",
-    "keywords": ["laravel", "razorpay", "payment", "gateway"],
+    "keywords": [
+        "laravel",
+        "razorpay",
+        "payment",
+        "gateway"
+    ],
     "type": "library",
     "license": "MIT",
     "authors": [
         {
-            "name": "Your Name",
-            "email": "your.email@example.com"
+            "name": "Adison Masih",
+            "email": "therealadison@gmail.com"
         }
     ],
     "require": {
@@ -15,21 +20,24 @@
         "illuminate/support": "^10.0|^11.0",
         "razorpay/razorpay": "^2.8"
     },
+    "require-dev": {
+        "orchestra/testbench": "^8.0|^9.0",
+        "phpunit/phpunit": "^10.0"
+    },
     "autoload": {
         "psr-4": {
-            "YourName\\LaravelRazorpayEasy\\": "src/"
+            "AdicodeT\\LaravelRazorpayEasy\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "YourName\\LaravelRazorpayEasy\\RazorpayServiceProvider"
+                "AdicodeT\\LaravelRazorpayEasy\\RazorpayServiceProvider"
             ],
             "aliases": {
-                "Razorpay": "YourName\\LaravelRazorpayEasy\\Facades\\Razorpay"
+                "Razorpay": "AdicodeT\\LaravelRazorpayEasy\\Facades\\Razorpay"
             }
         }
     },
-    "minimum-stability": "dev",
     "prefer-stable": true
 }
