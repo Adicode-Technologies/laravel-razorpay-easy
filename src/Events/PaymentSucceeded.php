@@ -1,10 +1,10 @@
 <?php
 
-namespace YourName\LaravelRazorpayEasy\Events;
+namespace AdicodeTechnologies\LaravelRazorpayEasy\Events;
 
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
-use YourName\LaravelRazorpayEasy\Models\Payment;
+use AdicodeTechnologies\LaravelRazorpayEasy\Models\Payment;
 
 class PaymentSucceeded
 {

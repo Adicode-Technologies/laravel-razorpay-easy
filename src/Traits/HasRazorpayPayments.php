@@ -1,8 +1,8 @@
 <?php
 
-namespace YourName\LaravelRazorpayEasy\Traits;
+namespace AdicodeTechnologies\LaravelRazorpayEasy\Traits;
 
-use YourName\LaravelRazorpayEasy\Models\Payment;
+use AdicodeTechnologies\LaravelRazorpayEasy\Models\Payment;
 
 trait HasRazorpayPayments
 {
@@ -15,7 +15,7 @@ trait HasRazorpayPayments
     {
         return $this->morphMany(Payment::class, 'payable');
     }
-    
+
     /**
      * Get successful payments for this model.
      *
@@ -25,7 +25,7 @@ trait HasRazorpayPayments
     {
         return $this->payments()->where('status', 'captured');
     }
-    
+
     /**
      * Create a new payment for this model.
      *
@@ -39,7 +39,7 @@ trait HasRazorpayPayments
         $razorpay = app('razorpay');
         return $razorpay->createOrder($amount, $currency, $options);
     }
-    
+
     /**
      * Get the total amount paid.
      *

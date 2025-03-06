@@ -1,6 +1,6 @@
 <?php
 
-namespace YourName\LaravelRazorpayEasy\Commands;
+namespace AdicodeTechnologies\LaravelRazorpayEasy\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
@@ -32,7 +32,7 @@ class InstallRazorpayCommand extends Command
 
         // Publish configuration
         $this->callSilent('vendor:publish', [
-            '--provider' => 'YourName\LaravelRazorpayEasy\RazorpayServiceProvider',
+            '--provider' => 'AdicodeTechnologies\LaravelRazorpayEasy\RazorpayServiceProvider',
             '--tag' => 'razorpay-config',
         ]);
 
@@ -40,7 +40,7 @@ class InstallRazorpayCommand extends Command
 
         // Publish migrations
         $this->callSilent('vendor:publish', [
-            '--provider' => 'YourName\LaravelRazorpayEasy\RazorpayServiceProvider',
+            '--provider' => 'AdicodeTechnologies\LaravelRazorpayEasy\RazorpayServiceProvider',
             '--tag' => 'razorpay-migrations',
         ]);
 
@@ -68,10 +68,10 @@ class InstallRazorpayCommand extends Command
     protected function addEnvironmentVariables()
     {
         $envPath = base_path('.env');
-        
+
         if (File::exists($envPath)) {
             $content = File::get($envPath);
-            
+
             if (!str_contains($content, 'RAZORPAY_KEY_ID')) {
                 File::append($envPath, "\n# Razorpay Configuration\nRAZORPAY_KEY_ID=\nRAZORPAY_KEY_SECRET=\nRAZORPAY_WEBHOOK_SECRET=\n");
                 $this->info('Added Razorpay environment variables to .env file');

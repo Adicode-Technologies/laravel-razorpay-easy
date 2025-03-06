@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use YourName\LaravelRazorpayEasy\Controllers\RazorpayController;
-use YourName\LaravelRazorpayEasy\Controllers\WebhookController;
+use AdicodeTechnologies\LaravelRazorpayEasy\Controllers\RazorpayController;
+use AdicodeTechnologies\LaravelRazorpayEasy\Controllers\WebhookController;
 
 // Only register routes if enabled in config
 if (config('razorpay.routes.enable_default_routes', true)) {
@@ -12,7 +12,7 @@ if (config('razorpay.routes.enable_default_routes', true)) {
     ], function () {
         // Checkout route
         Route::get('/checkout', [RazorpayController::class, 'checkout'])->name('razorpay.checkout');
-        
+
         // Payment callback route
         Route::post('/payment/callback', [RazorpayController::class, 'callback'])->name('razorpay.payment.callback');
     });

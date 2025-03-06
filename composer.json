@@ -26,16 +26,16 @@
     },
     "autoload": {
         "psr-4": {
-            "AdicodeT\\LaravelRazorpayEasy\\": "src/"
+            "AdicodeTechnologies\\LaravelRazorpayEasy\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "AdicodeT\\LaravelRazorpayEasy\\RazorpayServiceProvider"
+                "AdicodeTechnologies\\LaravelRazorpayEasy\\RazorpayServiceProvider"
             ],
             "aliases": {
-                "Razorpay": "AdicodeT\\LaravelRazorpayEasy\\Facades\\Razorpay"
+                "Razorpay": "AdicodeTechnologies\\LaravelRazorpayEasy\\Facades\\Razorpay"
             }
         }
     },

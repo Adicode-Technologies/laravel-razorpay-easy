@@ -1,12 +1,12 @@
 <?php
 
-namespace YourName\LaravelRazorpayEasy\Services;
+namespace AdicodeTechnologies\LaravelRazorpayEasy\Services;
 
 use Razorpay\Api\Api;
 use Illuminate\Support\Str;
-use YourName\LaravelRazorpayEasy\Models\Payment;
-use YourName\LaravelRazorpayEasy\Events\PaymentSucceeded;
-use YourName\LaravelRazorpayEasy\Events\PaymentFailed;
+use AdicodeTechnologies\LaravelRazorpayEasy\Models\Payment;
+use AdicodeTechnologies\LaravelRazorpayEasy\Events\PaymentSucceeded;
+use AdicodeTechnologies\LaravelRazorpayEasy\Events\PaymentFailed;
 
 class RazorpayService
 {
@@ -27,7 +27,7 @@ class RazorpayService
     {
         $keyId = $keyId ?? config('razorpay.key_id');
         $keySecret = $keySecret ?? config('razorpay.key_secret');
-        
+
         $this->api = new Api($keyId, $keySecret);
     }
 
@@ -42,16 +42,16 @@ class RazorpayService
     public function createOrder($amount, $currency = null, $options = [])
     {
         $currency = $currency ?? config('razorpay.currency');
-        
+
         // Convert amount to paise/cents (Razorpay expects amount in smallest currency unit)
         $amountInSmallestUnit = $amount * 100;
-        
+
         $orderData = array_merge([
             'receipt' => 'order_' . Str::random(16),
             'amount' => (int) $amountInSmallestUnit,
             'currency' => $currency,
         ], $options);
-        
+
         return $this->api->order->create($orderData);
     }
 
@@ -71,7 +71,7 @@ class RazorpayService
                 'razorpay_order_id' => $razorpayOrderId,
                 'razorpay_signature' => $signature,
             ]);
-            
+
             return true;
         } catch (\Exception $e) {
             return false;
@@ -100,10 +100,10 @@ class RazorpayService
     public function capturePayment($paymentId, $amount, $currency = null)
     {
         $currency = $currency ?? config('razorpay.currency');
-        
+
         // Convert amount to paise/cents
         $amountInSmallestUnit = $amount * 100;
-        
+
         return $this->api->payment->fetch($paymentId)->capture([
             'amount' => (int) $amountInSmallestUnit,
             'currency' => $currency,
@@ -121,13 +121,13 @@ class RazorpayService
     public function createRefund($paymentId, $amount = null, $options = [])
     {
         $refundData = $options;
-        
+
         if ($amount !== null) {
             // Convert amount to paise/cents
             $amountInSmallestUnit = $amount * 100;
             $refundData['amount'] = (int) $amountInSmallestUnit;
         }
-        
+
         return $this->api->payment->fetch($paymentId)->refund($refundData);
     }
 
@@ -135,7 +135,7 @@ class RazorpayService
      * Process payment after successful checkout.
      *
      * @param array $paymentData
-     * @return \YourName\LaravelRazorpayEasy\Models\Payment
+     * @return \AdicodeTechnologies\LaravelRazorpayEasy\Models\Payment
      */
     public function processPayment(array $paymentData)
     {
@@ -145,15 +145,15 @@ class RazorpayService
             $paymentData['razorpay_order_id'],
             $paymentData['razorpay_signature']
         );
-        
+
         if (!$isValid) {
             event(new PaymentFailed($paymentData));
             throw new \Exception('Invalid payment signature');
         }
-        
+
         // Fetch payment details
         $paymentDetails = $this->fetchPayment($paymentData['razorpay_payment_id']);
-        
+
         // Create payment record
         $payment = Payment::create([
             'payment_id' => $paymentDetails->id,
@@ -167,9 +167,9 @@ class RazorpayService
             'description' => $paymentData['description'] ?? null,
             'metadata' => json_encode($paymentData['metadata'] ?? []),
         ]);
-        
+
         event(new PaymentSucceeded($payment));
-        
+
         return $payment;
     }
 

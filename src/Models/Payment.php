@@ -1,6 +1,6 @@
 <?php
 
-namespace YourName\LaravelRazorpayEasy\Models;
+namespace AdicodeTechnologies\LaravelRazorpayEasy\Models;
 
 use Illuminate\Database\Eloquent\Model;
 

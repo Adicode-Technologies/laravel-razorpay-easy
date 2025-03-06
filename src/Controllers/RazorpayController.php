@@ -1,10 +1,10 @@
 <?php
 
-namespace YourName\LaravelRazorpayEasy\Controllers;
+namespace AdicodeTechnologies\LaravelRazorpayEasy\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use YourName\LaravelRazorpayEasy\Facades\Razorpay;
+use AdicodeTechnologies\LaravelRazorpayEasy\Facades\Razorpay;
 
 class RazorpayController extends Controller
 {
@@ -19,12 +19,12 @@ class RazorpayController extends Controller
         $amount = $request->amount;
         $currency = $request->currency ?? config('razorpay.currency');
         $description = $request->description ?? 'Payment for order';
-        
+
         // Create Razorpay order
         $order = Razorpay::createOrder($amount, $currency, [
             'notes' => $request->notes ?? [],
         ]);
-        
+
         // Prepare checkout data
         $checkoutData = [
             'key' => config('razorpay.key_id'),
@@ -42,21 +42,21 @@ class RazorpayController extends Controller
                 'color' => config('razorpay.checkout.theme_color'),
             ],
         ];
-        
+
         // Add logo if configured
         if (config('razorpay.checkout.logo')) {
             $checkoutData['image'] = config('razorpay.checkout.logo');
         }
-        
+
         // Add modal options
         $checkoutData['modal'] = config('razorpay.checkout.modal');
-        
+
         return view('razorpay::checkout', [
             'checkoutData' => $checkoutData,
             'callbackUrl' => $request->callback_url ?? route('razorpay.payment.callback'),
         ]);
     }
-    
+
     /**
      * Handle payment callback.
      *
@@ -72,10 +72,10 @@ class RazorpayController extends Controller
                 'razorpay_order_id' => 'required',
                 'razorpay_signature' => 'required',
             ]);
-            
+
             // Process payment
             $payment = Razorpay::processPayment($request->all());
-            
+
             // Redirect to success page
             return view('razorpay::success', [
                 'payment' => $payment,

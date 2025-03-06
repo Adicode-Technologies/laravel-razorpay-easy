@@ -10,8 +10,8 @@ NC='\033[0m' # No Color
 
 # Configuration - change these as needed
 PACKAGE_NAME="laravel-razorpay-easy"
-VENDOR_NAME="yourname"
-NAMESPACE="YourName"
+VENDOR_NAME="AdicodeTechnologies"
+NAMESPACE="AdicodeTechnologies"
 PACKAGE_DESCRIPTION="A simple and customizable Razorpay integration for Laravel applications"
 AUTHOR_NAME="Your Name"
 AUTHOR_EMAIL="your.email@example.com"
@@ -292,13 +292,13 @@ echo -e "${BLUE}Creating RazorpayService${NC}"
 cat > src/Services/RazorpayService.php << 'EOF'
 <?php
 
-namespace YourName\LaravelRazorpayEasy\Services;
+namespace AdicodeTechnologies\LaravelRazorpayEasy\Services;
 
 use Razorpay\Api\Api;
 use Illuminate\Support\Str;
-use YourName\LaravelRazorpayEasy\Models\Payment;
-use YourName\LaravelRazorpayEasy\Events\PaymentSucceeded;
-use YourName\LaravelRazorpayEasy\Events\PaymentFailed;
+use AdicodeTechnologies\LaravelRazorpayEasy\Models\Payment;
+use AdicodeTechnologies\LaravelRazorpayEasy\Events\PaymentSucceeded;
+use AdicodeTechnologies\LaravelRazorpayEasy\Events\PaymentFailed;
 
 class RazorpayService
 {
@@ -427,7 +427,7 @@ class RazorpayService
      * Process payment after successful checkout.
      *
      * @param array $paymentData
-     * @return \YourName\LaravelRazorpayEasy\Models\Payment
+     * @return \AdicodeTechnologies\LaravelRazorpayEasy\Models\Payment
      */
     public function processPayment(array $paymentData)
     {

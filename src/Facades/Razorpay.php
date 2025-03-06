@@ -1,6 +1,6 @@
 <?php
 
-namespace YourName\LaravelRazorpayEasy\Facades;
+namespace AdicodeTechnologies\LaravelRazorpayEasy\Facades;
 
 use Illuminate\Support\Facades\Facade;
 

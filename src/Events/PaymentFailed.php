@@ -1,6 +1,6 @@
 <?php
 
-namespace YourName\LaravelRazorpayEasy\Events;
+namespace AdicodeTechnologies\LaravelRazorpayEasy\Events;
 
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
